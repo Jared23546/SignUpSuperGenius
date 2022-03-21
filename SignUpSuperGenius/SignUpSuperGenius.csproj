@@ -9,5 +9,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Models\" />
   </ItemGroup>
 </Project>

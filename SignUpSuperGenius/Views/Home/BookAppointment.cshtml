@@ -16,7 +16,7 @@
         <input asp-for="Name" /><br /><br />
 
         <label asp-for="Size">Group Size:</label>
-        <input asp-for="Size" placeholder="1-15 People"/><br /><br />
+        <input type="number" max="15" asp-for="Size" /><br /><br />
 
         <label asp-for="Email">Email Address:</label>
         <input asp-for="Email" /><br /><br />

@@ -1,9 +1,12 @@
 ﻿@{
+    ViewData["Title"] = "Dating Application";
 }
 
-@*<h2>Group Information</h2>
+@model SignUpSuperGenius.Models.Groups
 
-<div>
+<div class="text-center">
+    <h2>Group Information</h2>
+
     <form method="post">
 
         <label asp-for="Name">Name of Group:</label>
@@ -15,7 +18,10 @@
         <label asp-for="Email">Email Address:</label>
         <input asp-for="Email" /><br /><br />
 
+        <label asp-for="PhoneNumber">Phone Number:</label>
+        <input asp-for="PhoneNumber" /><br /><br />
+
         <button type="submit">Submit</button>
 
     </form>
-</div>*@
+</div>

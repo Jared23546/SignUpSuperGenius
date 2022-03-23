@@ -94,9 +94,9 @@ namespace SignUpSuperGenius.Controllers
         [HttpPost]
         public IActionResult Delete(int groupid)
         {
-            var grp = AptContext.Groups.Single(x => x.GroupId == groupid);
-            grp.Appointment.Filled = false;
-            AptContext.Groups.Remove(grp);
+            var gro = AptContext.Groups.Single(x => x.GroupId == groupid);
+            AptContext.Appointments.Single(x => x.AppointmentId == gro.AppointmentId).Filled = false;
+            AptContext.Groups.Remove(gro);
             AptContext.SaveChanges();
             return RedirectToAction("Appointments");
         }

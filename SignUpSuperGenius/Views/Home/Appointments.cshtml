@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
 }
 
@@ -30,8 +31,9 @@
         {
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-secondary" style="background-color: turquoise;" value="Edit" >Edit</a>
+                    <a class="btn btn-sm btn-secondary" style="background-color: turquoise;" value="Edit" asp-controller="Home" asp-action="Edit" asp-route-groupid="@a.GroupId" asp-route-appointmentid="@a.AppointmentId">Edit</a>
                 </td>
+
                 <td>@a.Name</td>
                 <td>@a.Size</td>
                 <td>@a.Appointment.Day</td>

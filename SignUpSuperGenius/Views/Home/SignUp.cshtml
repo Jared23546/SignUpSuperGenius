@@ -1,5 +1,37 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+@model List<SignUpSuperGenius.Models.Appointment>
+
+<h1>Appointments</h1>
+
+
+<table class="table table-sm table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <td></td>
+            <td style="font-size: 23px;">Day</td>
+            <td style="font-size: 23px;">Time</td>
+            <td></td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.Day</td>
+                <td>@a.Time</td>
+                <td>
+                    <form method="post" asp-action="BookAppointment" asp-route-appointmentid="@a.AppointmentId">
+                        <button class="btn btn-small btn-danger" type="submit" value="Submit">Sign Up</button>
+                    </form>
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>

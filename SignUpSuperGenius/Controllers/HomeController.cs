@@ -25,6 +25,7 @@ namespace SignUpSuperGenius.Controllers
             return View();
         }
 
+        
         public IActionResult SignUp()
         {
             var apts = AptContext.Appointments
@@ -32,6 +33,7 @@ namespace SignUpSuperGenius.Controllers
                 .ToList();
             return View(apts);
         }
+
 
         [HttpGet]
         public IActionResult BookAppointment(int appointmentid)

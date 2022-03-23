@@ -25,7 +25,7 @@ namespace SignUpSuperGenius.Controllers
             return View();
         }
 
-        
+        //[HttpGet]
         public IActionResult SignUp()
         {
             var apts = AptContext.Appointments
@@ -34,12 +34,15 @@ namespace SignUpSuperGenius.Controllers
             return View(apts);
         }
 
+        //[HttpPost]
+        //public IActionResult SignUp(int appointmentid)
 
         [HttpGet]
         public IActionResult BookAppointment(int appointmentid)
         {
             var apt = AptContext.Appointments
                 .Single(x => x.AppointmentId == appointmentid);
+            
             return View(apt);
 
             //form has to have a hidden field that is the apointment ID
@@ -48,17 +51,17 @@ namespace SignUpSuperGenius.Controllers
         }
 
         [HttpPost]
-        public IActionResult BookAppointment(Groups grp)
+        public IActionResult BookAppointment(Appointment apt)
         {
             if (ModelState.IsValid)
             {
-                AptContext.Add(grp);
+                AptContext.Update(apt);
                 AptContext.SaveChanges();
                 return RedirectToAction("Appointments");
             }
             else
             {
-                return View(grp);
+                return View(apt);
             }
         }
 
@@ -66,26 +69,26 @@ namespace SignUpSuperGenius.Controllers
 
         public IActionResult Appointments()
         {
-            var groups = AptContext.Groups
-                .Include(x => x.Appointment)
-                .Where(x => x.Appointment.Filled == true)
+            var apts = AptContext.Appointments
+                //.Include(x => x.Appointment)
+                .Where(x => x.Filled == true)
                 .ToList();
-            return View(groups);
+            return View(apts);
         }
 
         [HttpGet]
-        public IActionResult Edit(int groupid)
+        public IActionResult Edit(int appointmentid)
         {
-            var grp = AptContext.Groups
-                .Include(x => x.Appointment)
-                .Single(x => x.GroupId == groupid);
-            return View("BookAppointment", grp);
+            var apt = AptContext.Appointments
+                //.Include(x => x.Appointment)
+                .Single(x => x.AppointmentId == appointmentid);
+            return View("BookAppointment", apt);
         }
 
         [HttpPost]
-        public IActionResult Edit(Groups grp)
+        public IActionResult Edit(Appointment apt)
         {
-            AptContext.Update(grp);
+            AptContext.Update(apt);
             AptContext.SaveChanges();
 
             return RedirectToAction("Appointments");
@@ -94,11 +97,15 @@ namespace SignUpSuperGenius.Controllers
 
 
         [HttpPost]
-        public IActionResult Delete(int groupid)
+        public IActionResult Delete(int appointmentid)
         {
-            var gro = AptContext.Groups.Single(x => x.GroupId == groupid);
-            AptContext.Appointments.Single(x => x.AppointmentId == gro.AppointmentId).Filled = false;
-            AptContext.Groups.Remove(gro);
+            var apt = AptContext.Appointments.Single(x => x.AppointmentId == appointmentid);
+            AptContext.Appointments.Single(x => x.AppointmentId == apt.AppointmentId).Filled = false;
+            AptContext.Appointments.Single(x => x.AppointmentId == apt.AppointmentId).Name = "";
+            AptContext.Appointments.Single(x => x.AppointmentId == apt.AppointmentId).Size = 0;
+            AptContext.Appointments.Single(x => x.AppointmentId == apt.AppointmentId).Email = "";
+            AptContext.Appointments.Single(x => x.AppointmentId == apt.AppointmentId).PhoneNumber = "";
+            //AptContext.Remove(apt);
             AptContext.SaveChanges();
             return RedirectToAction("Appointments");
         }

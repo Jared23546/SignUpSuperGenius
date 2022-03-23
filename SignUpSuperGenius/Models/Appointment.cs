@@ -16,5 +16,17 @@ namespace SignUpSuperGenius.Models
         public string Time { get; set; }
 
         public bool Filled { get; set; }
+
+
+        //group info
+        
+        public string Name { get; set; }
+
+        public ushort Size { get; set; }
+
+        public string Email { get; set; }
+
+        public string PhoneNumber { get; set; }
+
     }
 }

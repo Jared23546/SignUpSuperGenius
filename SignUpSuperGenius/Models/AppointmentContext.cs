@@ -11,7 +11,7 @@ namespace SignUpSuperGenius.Models
         }
 
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Groups> Groups { get; set; }
+        //public DbSet<Groups> Groups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {

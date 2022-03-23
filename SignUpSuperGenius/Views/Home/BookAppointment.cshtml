@@ -2,13 +2,16 @@
     ViewData["Title"] = "Book Appointment";
 }
 
-@model SignUpSuperGenius.Models.Groups
+@model Appointment
 
 <div class="text-center">
-    <h2>Group Information</h2><br />
+    <h2>Group Information for @Model.Day at @Model.Time</h2>
+    <br />
 
     <form method="post">
-
+        <input type="hidden" asp-for="Day" value="@Model.Day" />
+        <input type="hidden" asp-for="Time" value="@Model.Time" />
+        <input type="hidden" asp-for="Filled" value="true" />
         <label asp-for="Name">Name of Group:</label>
         <input asp-for="Name" /><br /><br />
 

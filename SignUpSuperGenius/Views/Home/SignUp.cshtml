@@ -2,7 +2,7 @@
 *@
 @{
 }
-@model List<SignUpSuperGenius.Models.Appointment>
+@model List<Appointment>
 
 <h1>Appointments</h1>
 
@@ -10,7 +10,7 @@
 <table class="table table-sm table-striped ">
     <thead class="thead-dark">
         <tr>
-            <td></td>
+            
             <td style="font-size: 23px;">Day</td>
             <td style="font-size: 23px;">Time</td>
             <td></td>
@@ -24,9 +24,11 @@
                 <td>@a.Day</td>
                 <td>@a.Time</td>
                 <td>
-                    <form method="post" asp-action="BookAppointment" asp-route-appointmentid="@a.AppointmentId">
+                    <a class="btn btn-sm" style="background-color: cyan" asp-controller="Home" asp-action="BookAppointment" asp-route-appointmentid="@a.AppointmentId">Sign Up</a>
+                    @*<form method="get" asp-action="BookAppointment" asp-route-appointmentid="@a.AppointmentId">
+                        <input type="hidden" asp-for="@a.AppointmentId" />
                         <button class="btn btn-small btn-danger" type="submit" value="Submit">Sign Up</button>
-                    </form>
+                    </form>*@
                 </td>
 
             </tr>

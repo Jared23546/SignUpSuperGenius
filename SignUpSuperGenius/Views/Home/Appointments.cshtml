@@ -5,7 +5,7 @@
 @{
 }
 
-@model List<SignUpSuperGenius.Models.Groups>
+@model List<Appointment>
 
 
 <h1>Appointments</h1>
@@ -31,19 +31,25 @@
         {
             <tr>
                 <td>
-                    <a class="btn btn-sm btn-secondary" style="background-color: turquoise;" value="Edit" asp-action="Edit" asp-route-groupid="@a.GroupId" asp-route-appointmentid="@a.AppointmentId">Edit</a>
+                    <a class="btn btn-sm btn-secondary" style="background-color: turquoise;" value="Edit" asp-action="Edit" asp-route-appointmentid="@a.AppointmentId">Edit</a>
                 </td>
 
                 <td>@a.Name</td>
                 <td>@a.Size</td>
-                <td>@a.Appointment.Day</td>
-                <td>@a.Appointment.Time</td>
-                <td>@a.Appointment.Filled</td>
+                <td>@a.Day</td>
+                <td>@a.Time</td>
+                <td>@a.Filled</td>
                 <td>@a.Email</td>
                 <td>@a.PhoneNumber</td>
                 
                 <td>
-                    <form method="post" asp-action="Delete" asp-route-groupid="@a.GroupId"><button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button></form>
+                    <form method="post" asp-action="Delete" asp-route-appointmentid="@a.AppointmentId">
+                        @*<input type="hidden" asp-for="@a.Name" value="" />
+                        <input type="hidden" asp-for="@a.Size" value="" />
+                        <input type="hidden" asp-for="@a.Email" value="" />
+                        <input type="hidden" asp-for="@a.PhoneNumber" value="" />*@
+                        <button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button>
+                    </form>
                 </td>
 
             </tr>

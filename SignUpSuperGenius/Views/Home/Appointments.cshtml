@@ -3,3 +3,52 @@
 *@
 @{
 }
+
+@model List<SignUpSuperGenius.Models.Groups>
+
+
+<h1>Appointments</h1>
+
+
+<table class="table table-sm table-striped ">
+    <thead class="thead-dark">
+        <tr>
+            <td></td>
+            <td style="font-size: 23px;">Group Leader</td>
+            <td style="font-size: 23px;">Group Size</td>
+            <td style="font-size: 23px;">Tour Day</td>
+            <td style="font-size: 23px;">Tour Time</td>
+            <td style="font-size: 23px;">Tour Booked</td>
+            <td style="font-size: 23px;">Email</td>
+            <td style="font-size: 23px;">Phone Number</td>
+            <td></td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-sm btn-secondary" style="background-color: turquoise;" value="Edit" >Edit</a>
+                </td>
+                <td>@a.Name</td>
+                <td>@a.Size</td>
+                <td>@a.Appointment.Day</td>
+                <td>@a.Appointment.Time</td>
+                <td>@a.Appointment.Filled</td>
+                <td>@a.Email</td>
+                <td>@a.PhoneNumber</td>
+                
+                <td>
+                    <form method="post" asp-action="Delete" asp-route-groupid="@a.GroupId"><button class="btn btn-small btn-danger" type="submit" value="Submit">Delete</button></form>
+                </td>
+
+            </tr>
+
+        }
+
+    </tbody>
+
+
+</table>

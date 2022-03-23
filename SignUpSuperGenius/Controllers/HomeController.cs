@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SignUpSuperGenius.Models;
 
@@ -35,7 +36,8 @@ namespace SignUpSuperGenius.Controllers
         [HttpGet]
         public IActionResult BookAppointment(int appointmentid)
         {
-            var apt = AptContext.Appointments.Single(x => x.AppointmentId == appointmentid);
+            var apt = AptContext.Appointments
+                .Single(x => x.AppointmentId == appointmentid);
             return View(apt);
 
             //form has to have a hidden field that is the apointment ID
@@ -63,6 +65,7 @@ namespace SignUpSuperGenius.Controllers
         public IActionResult Appointments()
         {
             var groups = AptContext.Groups
+                .Include(x => x.Appointment)
                 .Where(x => x.Appointment.Filled == true)
                 .ToList();
             return View(groups);
@@ -71,7 +74,9 @@ namespace SignUpSuperGenius.Controllers
         [HttpGet]
         public IActionResult Edit(int groupid)
         {
-            var grp = AptContext.Groups.Single(x => x.GroupId == groupid);
+            var grp = AptContext.Groups
+                .Include(x => x.Appointment)
+                .Single(x => x.GroupId == groupid);
             return View("BookAppointment", grp);
         }
 
@@ -89,9 +94,9 @@ namespace SignUpSuperGenius.Controllers
         [HttpPost]
         public IActionResult Delete(int groupid)
         {
-            var grp = AptContext.Groups.Single(x => x.GroupId == groupid);
-            grp.Appointment.Filled = false;
-            AptContext.Groups.Remove(grp);
+            var gro = AptContext.Groups.Single(x => x.GroupId == groupid);
+            AptContext.Appointments.Single(x => x.AppointmentId == gro.AppointmentId).Filled = false;
+            AptContext.Groups.Remove(gro);
             AptContext.SaveChanges();
             return RedirectToAction("Appointments");
         }

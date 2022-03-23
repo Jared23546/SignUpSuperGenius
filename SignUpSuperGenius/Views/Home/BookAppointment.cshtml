@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Dating Application";
+    ViewData["Title"] = "Book Appointment";
 }
 
 @model SignUpSuperGenius.Models.Groups
@@ -13,13 +13,15 @@
         <input asp-for="Name" /><br /><br />
 
         <label asp-for="Size">Group Size:</label>
-        <input asp-for="Size" /><br /><br />
+        <input asp-for="Size" placeholder="1-15 People"/><br /><br />
 
         <label asp-for="Email">Email Address:</label>
         <input asp-for="Email" /><br /><br />
 
         <label asp-for="PhoneNumber">Phone Number:</label>
         <input asp-for="PhoneNumber" /><br /><br />
+
+        <div asp-validation-summary="All"></div>
 
         <button type="submit">Submit</button>
 

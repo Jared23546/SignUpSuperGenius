@@ -11,6 +11,7 @@ namespace SignUpSuperGenius.Models
         [Required]
         public string Name { get; set; }
         [Required]
+        [Range(1, 15, ErrorMessage = "Maximum Number for a Group is 15 People")]
         public ushort Size { get; set; }
         [Required]
         public string Email { get; set; }
